@@ -5,3 +5,9 @@
   width: 70rem;
   max-width: 95%;
 }
+
+.cost__zero {
+  font-size: 2em;
+  color: #fefae1;
+  text-align: center;
+}

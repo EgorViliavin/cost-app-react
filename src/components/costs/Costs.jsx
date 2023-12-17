@@ -7,27 +7,36 @@ import CostsFilter from '../cost-filter/CostFilter';
 function Costs(props) {
   const { data } = props;
 
-  const [selectedYears, setSelectedYears] = useState('2023');
+  const [selectedYear, setSelectedYears] = useState('2021');
 
   const onChangeYear = (dataYears) => {
     setSelectedYears(dataYears);
   };
+
+  const dataFilter = data.filter((date) => {
+    return date.date.getFullYear().toString() === selectedYear;
+  });
+
+  let costContent = <p className='cost__zero'>В этом году расходов нет</p>;
+
+  if (dataFilter.length > 0) {
+    costContent = dataFilter.map((item) => {
+      return (
+        <CostItem
+          date={item.date}
+          des={item.des}
+          price={item.price}
+          key={item.id}
+        />
+      );
+    });
+  }
+
   return (
     <div>
       <Card className='costs'>
-        <CostsFilter onChangeYear={onChangeYear} year={selectedYears} />
-        <div className=''>
-          {data.map((item) => {
-            return (
-              <CostItem
-                date={item.date}
-                des={item.des}
-                price={item.price}
-                key={item.id}
-              />
-            );
-          })}
-        </div>
+        <CostsFilter onChangeYear={onChangeYear} year={selectedYear} />
+        <div className=''>{costContent}</div>
       </Card>
     </div>
   );
