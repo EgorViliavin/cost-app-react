@@ -1,5 +1,5 @@
 .new-cost__controls {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1rem;
@@ -23,4 +23,11 @@
 
 .new-cost__actions {
   text-align: left;
+}
+
+.new-cost__open {
+  display: flex;
+}
+.button__show {
+  text-align: center;
 }

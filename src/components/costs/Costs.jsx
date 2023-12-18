@@ -3,6 +3,7 @@ import './Costs.css';
 import CostItem from './costitem/Costitem';
 import Card from '../UI/card/Card';
 import CostsFilter from '../cost-filter/CostFilter';
+import CostDiagram from '../diagrams/CostDiagram';
 
 function Costs(props) {
   const { data } = props;
@@ -35,6 +36,7 @@ function Costs(props) {
   return (
     <div>
       <Card className='costs'>
+        <CostDiagram costs={dataFilter} />
         <CostsFilter onChangeYear={onChangeYear} year={selectedYear} />
         <div className=''>{costContent}</div>
       </Card>

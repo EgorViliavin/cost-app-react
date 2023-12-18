@@ -6,6 +6,7 @@ function CostForm(props) {
   const [inputName, setInputName] = useState('');
   const [inputPrice, setInputPrice] = useState('');
   const [inputDate, setInputDate] = useState('');
+  const [formShow, setFormShow] = useState();
 
   // Создание одного хука для всех инпутов
   // const [formImput, setFormInput] = useState({
@@ -49,7 +50,7 @@ function CostForm(props) {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className='new-cost__controls'>
+      <div className={`new-cost__controls ${formShow ? 'new-cost__open' : ''}`}>
         <div className='new-cost__control'>
           <label>Название</label>
           <input
@@ -81,8 +82,21 @@ function CostForm(props) {
           />
         </div>
         <div className='new-cost__actions'>
-          <button type='submit'>Добавить расходы</button>
+          <button
+            type='submit'
+            onClick={() => {
+              setFormShow(!formShow);
+            }}
+          >
+            Добавить расходы
+          </button>
         </div>
+      </div>
+      <div
+        className='new-cost__actions button__show'
+        onClick={() => setFormShow(!formShow)}
+      >
+        <button type='button'>{formShow ? 'Отмена' : 'Показать форму'}</button>
       </div>
     </form>
   );
